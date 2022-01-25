@@ -1,0 +1,545 @@
+<script>
+    "use strict";
+    //coverting a string to a number
+    console.log("\nString to Number");
+    function stringToNumber(val){
+        return parseInt(val,2);
+    }
+    console.log(stringToNumber(111011));
+
+    //Returning Random Fraction
+    console.log("\nRandom fractions");
+    function randomFraction(){
+        var ran = Math.random();
+        return ran;
+    }
+    console.log(randomFraction());
+    //Random Whole Number
+    console.log("\nRandom Whole Number");
+    function randomWholeNumber(){
+        return Math.floor(Math.random()*20);
+    }
+    console.log(randomWholeNumber());
+
+    //Rnadom numbers between ranges
+    console.log("\nRandom numbers between a range");
+    function randombtwnrange(min , max){
+        return Math.floor(Math.random() * (max-min+1))+min;
+    }
+    console.log(randombtwnrange(9,10));
+
+    //Profile LookUP
+    console.log("\nProfile Lookup");
+    //setup
+    var contacts = [
+        {
+            "firstname" : "Akira",
+            "lastname" : "Laine",
+            "number" : "0543236543",
+            "likes" : ["Pizza","Coding","Brownie Points"]
+        },
+        {
+            "firstname" : "Harry",
+            "lastname" : "Potter",
+            "number" : "0994372684",
+            "likes" : ["Hogwarts","Magic","Hagrid"]
+        },
+        {
+            "firstname" : "Sherlok",
+            "lastname" : "Holmes",
+            "number" : "0487345643",
+            "likes" : ["Intriguing Cases","Violin"]
+        },
+        {
+            "firstname" : "Kristian",
+            "lastname" : "vos",
+            "number" : "unknown",
+            "likes" : ["JavaScript","gaming","foxes"]
+        },
+    ];
+    //console.log(contacts.length);
+    function lookUpProfile(fname, prop){
+        for(var i = 0; i < contacts.length ; i++){
+            if(fname === contacts[i]["firstname"]){
+            return contacts[i][prop] || "property no found";
+            }
+        }
+        return "contact not found";
+    }
+    var data = lookUpProfile("Sherlok","likes");
+    console.log(data);
+
+    //LOOPS
+    //DO WHILE
+    console.log("\nDo while");
+    var anArr = [];
+    var i = 10;
+    do{
+        anArr.push(i);
+        i--;
+    }while(i>0)
+    console.log(anArr);
+
+    //FOR loop
+    console.log("\nFOR loop");
+    var ourArray = [];
+
+    for(var i = 0; i < 10; i+=2){
+        ourArray.push(i);
+    }
+    console.log(ourArray);
+    //NESTED ARRAYS
+    console.log("\nNESTED FOR LOOP");
+    function multiplyAll(arr){
+        var product = 1;
+        for(var i=0; i<arr.length; i++){
+            for(var j=0; j<arr[i].length; j++){
+                product *= arr[i][j];
+            }
+        }
+        return product;
+    }
+    
+    var products = multiplyAll([[1,2],[3,4],[5,6,7]]);
+    console.log(products);
+
+    //While loop
+    console.log("\nWhile Loop");
+    var myArr = [];
+
+    var i = 0;
+    while(i<17){
+        myArr.push(i);
+        i+=2;
+    }
+    console.log(myArr.length);
+
+    //Objects
+    console.log("\nObjects:");
+    var me = {
+        "name":"Francis",
+        "my age" : 21,
+        "height" : 56,
+        "background" : "college" 
+    }
+    console.log(me.name);//dot notation -> object access
+    let age = me["my age"];//bracket notation
+    console.log(me.name+"'s age: "+age);
+
+    //Objects use for lookup
+    console.log("\nUse of Objects for Lookup");
+    function mylookup(val)
+    {
+        var result;
+        var lookup = {
+            "alpha" : "Adams",
+            "bravo" : "Boston",
+            "charlie" : "chicago",
+            "delta" : "Denver",
+            "echo" : "Easy",
+            "foxtrot" : "Frank" 
+        };
+        result = lookup[val];
+        return result;
+    }
+    console.log(mylookup("charlie"));
+    //checking if object contains a certain property
+    console.log("\nCheck for prop");
+    var comrade = {
+        name : "njoroge",
+        course : "computer science",
+        dob : 2001,
+        units : 8
+    };
+    function checkprop(prop)
+    {
+        if(comrade.hasOwnProperty(prop))
+        {
+            return comrade[prop];
+        }else{
+            return "not found";
+        }
+        
+    }
+    console.log(checkprop("name"));
+    
+    //nested objects
+    console.log("\nAccessing Nested Objects");
+    var myStorage = {
+        "car":{
+            "inside":{
+                "glove box":"maps",
+                "passenger seat" : "crumbs",
+            }, 
+            "outside":{
+                "trunk":"jack"
+            }
+        }
+
+    };
+    var myglovebox = myStorage.car.inside["glove box"];//accessing nested objects values
+    console.log(myglovebox);
+
+    //Record collection
+    console.log("\nRecord collection");
+    var collection = {
+        "2548": {
+            "album" : "Slipperly When Wet",
+            "artist" : "Bon Jovi",
+            "tracks" : [
+                "Let It Rock",
+                "You give Love A Basd Name"
+            ]
+        },
+        "2468" : {
+            "album" : "1999",
+            "artist" : "Prince",
+            "tracks" : [
+                "1999",
+                "Little Red Corvette"
+            ]
+        },
+        "1245" : {
+            "artist" : "Robert Palmer",
+            "tracks" : []
+        },
+        "5439" : {
+             "album": "ABBA Gold"
+        }
+    };
+    console.log("The tracks: "+collection["2468"]["tracks"][1]);
+    //make a copy of the object before any updates for tests
+    var collectionCopy = JSON.parse(JSON.stringify(collection));
+
+    //updating an object
+    console.log("\nUpdating an object");
+    function updateobj(id,prop,value){
+        if(value === ""){
+            delete collection.id[prop];
+        }else if(prop === "tracks"){
+            collection[id][prop] = collection[id][prop] || [];
+            collection[id][prop].push(value);
+        }else{
+            collection[id][prop] = value;
+        }
+
+        return collection[id][prop];
+    }
+    console.log(updateobj("5439","tracks","wakioi"));
+
+
+    //Returning Early Pattern from functions
+    console.log("\nAND & OR")
+    function abtest(a,b)
+    {
+        if(a<0 || b<0){ /*Makes the fxn exit instead of waiting for it to 
+        execute the other return statement*/
+            return undefined;
+        }
+        return Math.round(Math.pow(Math.sqrt(a)+Math.sqrt(b),2));
+    }
+    console.log(abtest(2,2));
+
+    //case switch
+    function caseSwitch(val)
+    {
+        var answer = "";
+        switch(val){
+            case 1:
+            answer = "alpha";
+            break;
+            case 2:
+            answer = "beta";
+            break;
+            case 3:
+            answer = "gamma";
+            break;
+            case 4:
+            answer = "delta";
+            default:
+            answer = "invalid entry";
+        }
+        return answer;
+    }
+    console.log(caseSwitch(1));
+
+
+    //Logical AND & OR
+    function grading(grade)
+    {
+        if(grade >= 80 && grade<=100){
+        return "A";
+        }else if(grade >= 60 && grade <= 79){
+            return "B";
+        }else if(grade >= 50 && grade <= 59){
+            return "C";
+        }else if(grade >= 40 && grade <= 49){
+            return "D";
+        }else if(grade < 40){
+        return "FAIL";
+        }else{
+            return "INVALID ENTRY";
+        }
+    }
+    console.log(grading(67));
+
+
+    //QUEUE
+function next(arr,item)
+{
+    arr.push(item);//Adds an item on the end of the array
+    //return item; Returns the last added item
+    return arr.shift();//Removes an item from the front of the array
+}
+var testArr = [1,2,3,4,5];
+console.log("Before: "+JSON.stringify(testArr));
+console.log(next(testArr,6));
+console.log("After: " + JSON.stringify(testArr));
+
+//Ternary operator
+console.log("\nTernary Operator");
+function checksign(n){
+    return n > 0 ? "positive" : n < 0 ? "negative" : "zero";
+}
+console.log(checksign(474));
+
+//Arrow functions
+console.log("\nArrow functions");
+//original function
+/*var magic = function (){
+    return new Date();
+};
+var myCancat = function(arr1,arr2){
+    return arr1.concat(arr2);
+};*/
+//Arrow function equivalence
+const magic = () => new Date();
+
+let myConcat = (arr1,arr2) => arr1.concat(arr2);//concatenates two arrays into one 
+
+console.log(magic());
+console.log(myConcat([1,2],[3,4,5]));
+
+//Higher Order Arrow Functions
+console.log("\nHigher Order Arrow Functions");
+const realNumberArray = [4,5.6, -9.8, 3.14, 42, 6, 8.34, -2];
+
+const squareList = (arr) => {
+    const squaredIntegers = arr.filter(num => Number.isInteger(num) && num >0).map(x => x * x);
+    return squaredIntegers;
+}
+console.log(squareList(realNumberArray));
+
+//using the rest operator
+console.log("\nUsing the rest operator");
+//original function
+const sum = (function() {
+    return function sum(x,y,z){
+        const args = [x,y,z];
+        return args.reduce((a,b) => a + b,0);
+    };
+})();
+console.log("Without rest operator: "+sum(2,3,4));
+//using the rest operator
+const sums = (function() {
+    return function sums(... args){
+        //const args = [x,y,z];
+        return args.reduce((a,b) => a + b,0);
+    };
+})();
+console.log("Using Rest operator: "+sums(5,3,2,4,5));
+
+//Using spread opereator-> Spreads an array into its individual parts
+console.log("\nSpread Operator")
+//Without spread operator
+const arr1 = ['jan','feb','mar','apr','may'];
+let arr2;
+(function() {
+    arr2 = arr1;
+    arr1[0] = 'potato';
+})();
+console.log("Without spread operator\n"+arr2);
+//using spread operator
+const arr3 = ['jan','feb','mar','apr','may'];
+let arr4;
+(function() {
+    arr4 = [...arr3];//spread operator
+    arr3[0] = 'potato';
+})();
+console.log("using spread operator\n"+arr4);
+
+//using Destructuring Assignment
+console.log("\nUsing destructuring Assignment");
+const avgTemp = {
+    today : 77.5,
+    tommorow : 79
+};
+function getTempOfTmrw(avgTemp){
+    "use strict";
+    const {tommorow : tmrtemp} = avgTemp;
+    return tmrtemp;
+}
+console.log(getTempOfTmrw(avgTemp));
+//Accessing variables in nested objects using destructuring assignment
+const LOCAL_FORECAST = {
+    today : {min: 72, max: 83},
+    tomorrow : {min: 73.3, max: 84.6}
+};
+function getMaxOfTmrw(forecast){
+    "use strict";
+    const {tomorrow : {max : maxOfTmrw}} = forecast;
+    return maxOfTmrw;
+}
+console.log("Destructuring nested objects: \n"+getMaxOfTmrw(LOCAL_FORECAST));
+//Destructuring Arrays
+const [z,,,x,y] = [1,2,3,4,5,6,7];
+console.log("Destructuring an array: \n"+z,x,y);
+const [,,...arr7] = [1,2,3,4,5,6];
+console.log("Removing elements using destructuring assignment and rest operator\n"+arr7);
+const [a,,b,,,c,...arr0] = [344,22,14,1,32,13,543,13,53,65]
+console.log("Reassigning variables using de and retsop:\n"+arr0);
+console.log("\n"+a,b,c);
+
+//Using destructuring Assignment to pass an object as a argument to a function
+console.log("\nPassing an object as an argument to a function");
+const stats = {
+    max: 56.78,
+    standard_deviation : 4.34,
+    median: 38.54,
+    mode:  23.87,
+    min: -.75,
+    average: 35.85
+};
+const half = (function(){
+    return function half(stats){
+        return (stats.max + stats.min) / 2.0;
+    };
+})();   
+console.log(stats);
+console.log("Without destructuring\n"+half(stats));
+
+const halfs = (function(){
+    return function halfs({max,min}){
+        return (max + min) / 2.0;
+    };
+})();   
+//console.log(stats);
+console.log("using destructuring\n"+halfs(stats));
+
+//using template literals to create strings
+const person = {
+    name: "Njoroge Francis",
+    age: 20
+};
+//template literal
+const greetings = `Hello there, my name is ${person.name}!
+I am ${person.age} years old.`;
+console.log("Template literal string:\n"+greetings);
+//Challenge
+ const result = {
+     success: ["max-length","no-amd","prefer-arrow-functions"],
+     failure: ["no-var","var-on-top","linebreak"],
+     skipped: ["id-blacklist","no-dup-keys"]
+ };
+
+ function makelist(arr){
+     const resulDisplayArray = [];
+     for(let i = 0;i<arr.length;i++){
+         resulDisplayArray.push(`<li class = "text-wrning"> ${arr[i]} </li>`);
+     }
+     return resulDisplayArray;  
+ }
+const resul = makelist(result.skipped);
+console.log(resul);
+
+//concise object declaration using simple fields
+//Normal object declaration
+console.log("\nConcise Object Literals declaration using simple fields\n")
+console.log("Normal declaration");
+const createPerson = (name,age,gender) => {
+
+    return{
+        name:name,
+        age:age,
+        gender:gender
+    };
+
+};
+console.log(createPerson("Francis",20,"male"));
+//concise declaration
+console.log("Concise declaration");
+const craetePerson = (name,age,gender) => ( {name,age,gender} );
+const persons = craetePerson("Niki",8,"female");
+console.log(persons)
+
+//concise declarative 
+//original object function declaration
+const bike = {
+    gear : 2,
+    setgear : function(newgear){
+        "use strict"
+        this.gear = new gear;
+    }
+}
+//concise declartive functions
+const bikes = {
+    gear : 2,
+    setgear(newgear){//we got rid of function keyword and the :
+        this.gear = new gear;
+    }
+}
+
+//Using class keyword to define constructor function
+//Normal functions
+var spaceShuttle = function(targetPlanet){
+    this.targetPlanet = targetPlanet;
+}
+var zeus = new spaceShuttle("jupiter");
+console.log("\nWithout using class keyword:\n"+zeus.targetPlanet); 
+//using class keyword
+class spaceShuttles{
+    constructor(targetPlanets){
+        this.targetPlanets = targetPlanets;
+    }
+}
+var zeun = new spaceShuttles("Mercury");
+console.log("Using class keyword:\n"+zeun.targetPlanets);
+
+//Using getters and setters in class objects
+console.log("\nexample of getters and setters");
+class book{
+    constructor(author){
+        this._author = author;
+    }
+    get writer(){
+        return this._author;
+    }
+    set writer(updateAuthor){
+        this._author = newAuthor;
+    }
+}
+var autho = new book("carnegie");
+console.log(autho._author);
+
+//Trial example of getters and setters
+function makeClass(){
+    class thermostat{
+        constructor(farenheits){
+            this.farenheit = 5/9 * (farenheits);
+        }
+        get temp(){
+            return this.farenheit;
+        }
+        set temp(celcius){
+            this.farenheit = celcius;
+        }
+    }
+    return thermostat;
+}
+const thermostat = makeClass();
+const thermos = new thermostat(372);
+let tmp = thermos.temp;
+thermos.temp = 26;
+tmp = thermos.temp;
+console.log("Trial on getters and setters\n"+tmp);
+</script>
