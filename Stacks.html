@@ -1,0 +1,65 @@
+<script>
+
+var letter = [];
+var word = "racecar";
+let rword = "";
+
+//copy the word into the empty array
+for(var i = 0; i< word.length; i++){
+	letter.push(word[i]);
+}
+
+//pop off the stack in reverse order
+for(var i = 0; i< word.length; i++){
+	rword += letter.pop();
+}
+
+if(word === rword){
+	console.log(word + "is a palindrome");
+}else{
+	console.log(word + " is not a palindrome to "+ rword);
+
+}
+ //The stack class
+
+ console.log("The stack class:\n");
+
+//create a stack
+ 	var stack = function(){
+ 		this.count = 0
+ 		this.storage = {};
+
+
+ 		//Add a value onto the end of the stack
+ 		this.push = function(value){
+ 			this.storage[this.count] = value;
+ 			this.count++;
+ 		}
+
+ 		//Remove and return the value at the end of the stack
+ 		this.pop = function(){
+ 			if(this.count == 0){
+ 				return undefined;
+ 			}
+
+ 			this.count--;
+ 			var result = this.storage[this.count];
+ 			delete this.storage[this.count];
+ 			return result;
+ 		}
+
+
+ 		this.size = function(){
+ 			return this.count;
+ 		}
+
+
+ 		//Return the value at the end of the stack
+ 		this.peek = function(value){
+ 			return this.storage[this.count-1];
+ 		}
+ 	}
+
+ 	var stacks = stack();
+ 	console.log(stacks.push(10));
+</script>
