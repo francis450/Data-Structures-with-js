@@ -1,25 +1,4 @@
 <script>
-
-var letter = [];
-var word = "racecar";
-let rword = "";
-
-//copy the word into the empty array
-for(var i = 0; i< word.length; i++){
-	letter.push(word[i]);
-}
-
-//pop off the stack in reverse order
-for(var i = 0; i< word.length; i++){
-	rword += letter.pop();
-}
-
-if(word === rword){
-	console.log(word + "is a palindrome");
-}else{
-	console.log(word + " is not a palindrome to "+ rword);
-
-}
  //The stack class
 
  console.log("The stack class:\n");
@@ -61,5 +40,10 @@ if(word === rword){
  	}
 
  	var stacks = stack();
- 	console.log(stacks.push(10));
+ 	stacks.push(67);
+ 	stacks.push(23);
+ 	stacks.push(44);
+ 	console.log(stacks.peek());
+ 	console.log(stacks.pop())
+ 	console.log(stacks.peek());
 </script>
