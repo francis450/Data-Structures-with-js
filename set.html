@@ -81,7 +81,7 @@
 		this.subset = function(otherSet){
 			var firstset = this.values;
 
-			return firstset.every(function(value){
+			return firstset(function(value){
 				return otherSet.has(value);
 			});
 		};
@@ -98,9 +98,7 @@
 	setA.add("e");
 	setA.add("f");
 
+	setA.remove("c");
 	console.log(setA.subset(setB));
-
-
-
 
 </script>
