@@ -40,7 +40,7 @@
 
 		//this method will return the union of two sets
 		this.union = function(otherSet){
-			var unionset = new set();
+			var unionset = new Set();
 			var firstset = this.values();
 			var secondset = otherSet.values();
 			firstset.forEach(function(e){
@@ -98,7 +98,14 @@
 	setA.add("e");
 	setA.add("f");
 
+	setB.add(1);
+	setB.add(2);
+	setB.add(3);
+	setB.add(4);
+	setB.add(5);
+
 	setA.remove("c");
-	console.log(setA.subset(setB));
+	var yeah = setB.union(setA);
+	console.log(yeah);
 
 </script>
